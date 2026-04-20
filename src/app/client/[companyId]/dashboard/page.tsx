@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
-import { ClipboardCheck, Target, ListTodo, MessageSquare, ArrowRight } from "lucide-react";
+import { ClipboardCheck, Target, ListTodo, MessageSquare, ArrowRight, Calendar } from "lucide-react";
 
 export default async function ClientDashboardPage({
   params,
@@ -104,6 +104,13 @@ export default async function ClientDashboardPage({
           icon={<Target size={20} />}
           description={plan ? "Ver plan" : "Generar plan"}
           disabled={!diagnostic}
+        />
+        <QuickCard
+          href={`/client/${companyId}/operations`}
+          label="Operaciones"
+          icon={<Calendar size={20} />}
+          description="Plan y cronograma"
+          disabled={!plan}
         />
         <QuickCard
           href={`/client/${companyId}/tracker`}

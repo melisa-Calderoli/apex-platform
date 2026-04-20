@@ -21,6 +21,7 @@ interface SidebarProps {
   companyId?: string;
   companyName?: string;
   userName?: string;
+  isAdminViewing?: boolean;
 }
 
 export default function Sidebar({
@@ -28,6 +29,7 @@ export default function Sidebar({
   companyId,
   companyName,
   userName,
+  isAdminViewing,
 }: SidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
@@ -65,9 +67,14 @@ export default function Sidebar({
       {companyName && (
         <div className="px-5 py-4 border-b border-[#e5e5e0]">
           <p className="text-[10px] uppercase tracking-wider text-[#6b7280] mb-1 font-medium">
-            {role === "admin" ? "Administrador" : "Cliente"}
+            {isAdminViewing ? "Admin viendo cliente" : role === "admin" ? "Administrador" : "Cliente"}
           </p>
           <p className="text-sm font-medium text-black truncate">{companyName}</p>
+          {isAdminViewing && (
+            <Link href="/admin/dashboard" className="text-[10px] text-[#f97316] hover:text-[#ea580c]">
+              ← Volver al panel admin
+            </Link>
+          )}
         </div>
       )}
 

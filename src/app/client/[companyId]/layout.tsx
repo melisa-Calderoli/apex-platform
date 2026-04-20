@@ -30,10 +30,11 @@ export default async function ClientLayout({
   return (
     <div className="min-h-screen">
       <Sidebar
-        role={auth.profile.role}
+        role="client"
         companyId={companyId}
         companyName={company.name}
         userName={auth.profile.full_name || auth.user.email || "Usuario"}
+        isAdminViewing={auth.profile.role === "admin"}
       />
       <main className="ml-64 min-h-screen">{children}</main>
     </div>
