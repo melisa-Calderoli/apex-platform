@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
-import { Sparkles } from "lucide-react";
+import { LogoText } from "@/components/Logo";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -48,38 +48,26 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0a0a18] relative overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a18] via-[#14142b] to-[#0a0a18]" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#c9a84c] opacity-[0.03] blur-3xl rounded-full" />
+    <div className="min-h-screen flex items-center justify-center bg-[#fafaf7] relative overflow-hidden">
+      {/* Background accent */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#f97316] opacity-[0.06] blur-3xl rounded-full" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#fbbf24] opacity-[0.05] blur-3xl rounded-full" />
 
       <div className="relative w-full max-w-md px-6">
-        <div className="bg-[#1a1a35] border border-[#2a2a4d] rounded-2xl p-10 shadow-2xl">
+        <div className="bg-white border border-[#e5e5e0] rounded-2xl p-10 shadow-lg">
           <div className="flex items-center justify-center mb-8">
-            <div className="flex items-center gap-3">
-              <div className="bg-gradient-to-br from-[#c9a84c] to-[#9e8139] rounded-xl p-2.5">
-                <Sparkles size={24} className="text-[#0a0a18]" />
-              </div>
-              <div>
-                <h1 className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-[#f1f1f5]">
-                  APEX
-                </h1>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-[#c9a84c]">
-                  Strategic Platform
-                </p>
-              </div>
-            </div>
+            <LogoText size="lg" />
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
             {error && (
-              <div className="bg-red-500/10 border border-red-500/30 text-red-400 px-4 py-3 rounded-lg text-sm">
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
                 {error}
               </div>
             )}
 
             <div>
-              <label className="block text-xs uppercase tracking-wider text-[#8b8ba7] mb-2">
+              <label className="block text-xs uppercase tracking-wider text-[#6b7280] mb-2 font-medium">
                 Email
               </label>
               <input
@@ -87,13 +75,13 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full bg-[#0a0a18] border border-[#2a2a4d] rounded-lg px-4 py-2.5 text-[#f1f1f5] focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] outline-none transition"
+                className="w-full bg-[#fafaf7] border border-[#e5e5e0] rounded-lg px-4 py-2.5 text-black focus:border-[#f97316] focus:ring-1 focus:ring-[#f97316] outline-none transition"
                 placeholder="tu@empresa.com"
               />
             </div>
 
             <div>
-              <label className="block text-xs uppercase tracking-wider text-[#8b8ba7] mb-2">
+              <label className="block text-xs uppercase tracking-wider text-[#6b7280] mb-2 font-medium">
                 Contrasena
               </label>
               <input
@@ -101,7 +89,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full bg-[#0a0a18] border border-[#2a2a4d] rounded-lg px-4 py-2.5 text-[#f1f1f5] focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] outline-none transition"
+                className="w-full bg-[#fafaf7] border border-[#e5e5e0] rounded-lg px-4 py-2.5 text-black focus:border-[#f97316] focus:ring-1 focus:ring-[#f97316] outline-none transition"
                 placeholder="********"
               />
             </div>
@@ -109,13 +97,13 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-[#c9a84c] to-[#9e8139] text-[#0a0a18] font-semibold py-2.5 rounded-lg hover:from-[#e3c670] hover:to-[#c9a84c] transition disabled:opacity-50 disabled:cursor-not-allowed mt-6"
+              className="w-full bg-[#f97316] text-white font-semibold py-2.5 rounded-lg hover:bg-[#ea580c] transition disabled:opacity-50 disabled:cursor-not-allowed mt-6 shadow-sm"
             >
               {loading ? "Ingresando..." : "Ingresar"}
             </button>
           </form>
 
-          <p className="text-xs text-[#8b8ba7] text-center mt-6">
+          <p className="text-xs text-[#6b7280] text-center mt-6">
             Plataforma privada. Acceso por invitacion.
           </p>
         </div>

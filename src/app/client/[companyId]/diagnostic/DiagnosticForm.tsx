@@ -141,14 +141,14 @@ export default function DiagnosticForm({ companyId, existing }: Props) {
       {/* Progress */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
-          <p className="text-sm text-[#8b8ba7]">
+          <p className="text-sm text-[#6b7280]">
             Seccion {section + 1} de {SECTIONS.length}
           </p>
-          <p className="text-sm text-[#c9a84c]">{Math.round(progress)}%</p>
+          <p className="text-sm text-[#f97316]">{Math.round(progress)}%</p>
         </div>
-        <div className="h-2 bg-[#1a1a35] rounded-full overflow-hidden">
+        <div className="h-2 bg-white rounded-full overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-[#c9a84c] to-[#9e8139] transition-all duration-300"
+            className="h-full bg-[#f97316] transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -161,27 +161,27 @@ export default function DiagnosticForm({ companyId, existing }: Props) {
       )}
 
       {/* Form */}
-      <div className="bg-[#1a1a35] border border-[#2a2a4d] rounded-xl p-8">
-        <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-[#f1f1f5] mb-6">
+      <div className="bg-white border border-[#e5e5e0] rounded-xl p-8">
+        <h2 className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-black mb-6">
           {currentSection.title}
         </h2>
 
         <div className="space-y-5">
           {currentSection.fields.map((field) => (
             <div key={field.name}>
-              <label className="block text-sm text-[#f1f1f5] mb-2">{field.label}</label>
+              <label className="block text-sm text-black mb-2">{field.label}</label>
               {field.type === "textarea" ? (
                 <textarea
                   value={formData[field.name] || ""}
                   onChange={(e) => updateField(field.name, e.target.value)}
                   rows={3}
-                  className="w-full bg-[#0a0a18] border border-[#2a2a4d] rounded-lg px-3 py-2 text-[#f1f1f5] focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] outline-none"
+                  className="w-full bg-[#fafaf7] border border-[#e5e5e0] rounded-lg px-3 py-2 text-black focus:border-[#f97316] focus:ring-1 focus:ring-[#c9a84c] outline-none"
                 />
               ) : field.type === "select" ? (
                 <select
                   value={formData[field.name] || ""}
                   onChange={(e) => updateField(field.name, e.target.value)}
-                  className="w-full bg-[#0a0a18] border border-[#2a2a4d] rounded-lg px-3 py-2 text-[#f1f1f5] focus:border-[#c9a84c] outline-none"
+                  className="w-full bg-[#fafaf7] border border-[#e5e5e0] rounded-lg px-3 py-2 text-black focus:border-[#f97316] outline-none"
                 >
                   <option value="">Seleccionar...</option>
                   {field.options?.map((o) => (
@@ -194,7 +194,7 @@ export default function DiagnosticForm({ companyId, existing }: Props) {
                   value={formData[field.name] || ""}
                   onChange={(e) => updateField(field.name, e.target.value)}
                   placeholder={field.placeholder}
-                  className="w-full bg-[#0a0a18] border border-[#2a2a4d] rounded-lg px-3 py-2 text-[#f1f1f5] focus:border-[#c9a84c] outline-none"
+                  className="w-full bg-[#fafaf7] border border-[#e5e5e0] rounded-lg px-3 py-2 text-black focus:border-[#f97316] outline-none"
                 />
               )}
             </div>
@@ -202,12 +202,12 @@ export default function DiagnosticForm({ companyId, existing }: Props) {
         </div>
 
         {/* Nav buttons */}
-        <div className="flex items-center justify-between mt-8 pt-6 border-t border-[#2a2a4d]">
+        <div className="flex items-center justify-between mt-8 pt-6 border-t border-[#e5e5e0]">
           <button
             type="button"
             onClick={() => setSection(Math.max(0, section - 1))}
             disabled={section === 0}
-            className="px-4 py-2 text-[#8b8ba7] hover:text-[#f1f1f5] disabled:opacity-30 disabled:cursor-not-allowed"
+            className="px-4 py-2 text-[#6b7280] hover:text-black disabled:opacity-30 disabled:cursor-not-allowed"
           >
             Anterior
           </button>
@@ -216,7 +216,7 @@ export default function DiagnosticForm({ companyId, existing }: Props) {
             type="button"
             onClick={saveProgress}
             disabled={saving}
-            className="px-4 py-2 text-[#c9a84c] hover:text-[#e3c670] disabled:opacity-50 text-sm"
+            className="px-4 py-2 text-[#f97316] hover:text-[#e3c670] disabled:opacity-50 text-sm"
           >
             {saving ? "Guardando..." : "Guardar progreso"}
           </button>
@@ -225,7 +225,7 @@ export default function DiagnosticForm({ companyId, existing }: Props) {
             <button
               type="button"
               onClick={() => setSection(section + 1)}
-              className="px-5 py-2 bg-[#2a2a4d] text-[#f1f1f5] rounded-lg hover:bg-[#3a3a6d]"
+              className="px-5 py-2 bg-[#e5e5e0] text-black rounded-lg hover:bg-[#d4d4d0]"
             >
               Siguiente
             </button>
@@ -234,7 +234,7 @@ export default function DiagnosticForm({ companyId, existing }: Props) {
               type="button"
               onClick={generateAnalysis}
               disabled={generating}
-              className="flex items-center gap-2 bg-gradient-to-r from-[#c9a84c] to-[#9e8139] text-[#0a0a18] font-semibold px-5 py-2 rounded-lg hover:from-[#e3c670] hover:to-[#c9a84c] transition disabled:opacity-50"
+              className="flex items-center gap-2 bg-[#f97316] text-[#0a0a18] font-semibold px-5 py-2 rounded-lg hover:bg-[#ea580c] transition disabled:opacity-50"
             >
               {generating ? (
                 <>

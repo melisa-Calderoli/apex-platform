@@ -1,30 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  --color-apex-bg: #0a0a18;
-  --color-apex-bg-elevated: #14142b;
-  --color-apex-bg-card: #1a1a35;
-  --color-apex-border: #2a2a4d;
-  --color-apex-gold: #c9a84c;
-  --color-apex-gold-light: #e3c670;
-  --color-apex-gold-dark: #9e8139;
-  --color-apex-text: #f1f1f5;
-  --color-apex-text-muted: #8b8ba7;
-  --color-apex-success: #4ade80;
-  --color-apex-warning: #fbbf24;
-  --color-apex-danger: #f87171;
+  --color-brand-bg: #fafaf7;
+  --color-brand-bg-elevated: #ffffff;
+  --color-brand-bg-card: #ffffff;
+  --color-brand-border: #e5e5e0;
+  --color-brand-accent: #f97316;
+  --color-brand-accent-light: #fb923c;
+  --color-brand-accent-dark: #ea580c;
+  --color-brand-accent-yellow: #fbbf24;
+  --color-brand-text: #0a0a0a;
+  --color-brand-text-muted: #6b7280;
+  --color-brand-success: #16a34a;
+  --color-brand-warning: #f59e0b;
+  --color-brand-danger: #dc2626;
 
   --font-display: "Playfair Display", Georgia, serif;
   --font-sans: "Inter", system-ui, sans-serif;
 }
 
 :root {
-  --background: #0a0a18;
-  --foreground: #f1f1f5;
+  --background: #fafaf7;
+  --foreground: #0a0a0a;
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
@@ -39,16 +40,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #14142b;
+  background: #f5f5f0;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2a2a4d;
+  background: #d4d4d0;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3a3a6d;
+  background: #a0a09c;
 }
 
 @keyframes shimmer {
@@ -61,7 +62,7 @@ body {
 }
 
 .skeleton {
-  background: linear-gradient(90deg, #1a1a35 0%, #2a2a4d 50%, #1a1a35 100%);
+  background: linear-gradient(90deg, #f0f0ec 0%, #e5e5e0 50%, #f0f0ec 100%);
   background-size: 1000px 100%;
   animation: shimmer 2s infinite linear;
 }

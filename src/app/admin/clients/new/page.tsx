@@ -56,13 +56,13 @@ export default function NewClientPage() {
     <div className="p-8 max-w-3xl">
       <Link
         href="/admin/dashboard"
-        className="flex items-center gap-2 text-[#8b8ba7] hover:text-[#c9a84c] text-sm mb-4"
+        className="flex items-center gap-2 text-[#6b7280] hover:text-[#f97316] text-sm mb-4"
       >
         <ArrowLeft size={16} />
         Volver
       </Link>
 
-      <h1 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-[#f1f1f5] mb-8">
+      <h1 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-black mb-8">
         Nuevo Cliente
       </h1>
 
@@ -73,8 +73,8 @@ export default function NewClientPage() {
           </div>
         )}
 
-        <div className="bg-[#1a1a35] border border-[#2a2a4d] rounded-xl p-6">
-          <h2 className="text-lg font-semibold text-[#f1f1f5] mb-4">Datos de la empresa</h2>
+        <div className="bg-white border border-[#e5e5e0] rounded-xl p-6">
+          <h2 className="text-lg font-semibold text-black mb-4">Datos de la empresa</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <FormField name="name" label="Nombre empresa *" required />
             <FormField name="industry" label="Industria" placeholder="Ej: Construccion, Retail..." />
@@ -97,9 +97,9 @@ export default function NewClientPage() {
           </div>
         </div>
 
-        <div className="bg-[#1a1a35] border border-[#2a2a4d] rounded-xl p-6">
-          <h2 className="text-lg font-semibold text-[#f1f1f5] mb-4">Usuario del cliente</h2>
-          <p className="text-xs text-[#8b8ba7] mb-4">
+        <div className="bg-white border border-[#e5e5e0] rounded-xl p-6">
+          <h2 className="text-lg font-semibold text-black mb-4">Usuario del cliente</h2>
+          <p className="text-xs text-[#6b7280] mb-4">
             Se crea el usuario para que el cliente acceda a su panel.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -112,14 +112,14 @@ export default function NewClientPage() {
         <div className="flex justify-end gap-3">
           <Link
             href="/admin/dashboard"
-            className="px-5 py-2.5 border border-[#2a2a4d] text-[#8b8ba7] rounded-lg hover:bg-[#1a1a35]"
+            className="px-5 py-2.5 border border-[#e5e5e0] text-[#6b7280] rounded-lg hover:bg-white"
           >
             Cancelar
           </Link>
           <button
             type="submit"
             disabled={loading}
-            className="flex items-center gap-2 bg-gradient-to-r from-[#c9a84c] to-[#9e8139] text-[#0a0a18] font-semibold px-5 py-2.5 rounded-lg hover:from-[#e3c670] hover:to-[#c9a84c] transition disabled:opacity-50"
+            className="flex items-center gap-2 bg-[#f97316] text-[#0a0a18] font-semibold px-5 py-2.5 rounded-lg hover:bg-[#ea580c] transition disabled:opacity-50"
           >
             <Save size={16} />
             {loading ? "Creando..." : "Crear Cliente"}
@@ -130,8 +130,8 @@ export default function NewClientPage() {
   );
 }
 
-const inputCls = "w-full bg-[#0a0a18] border border-[#2a2a4d] rounded-lg px-3 py-2 text-sm text-[#f1f1f5] focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] outline-none";
-const labelCls = "block text-xs uppercase tracking-wider text-[#8b8ba7] mb-1.5";
+const inputCls = "w-full bg-[#fafaf7] border border-[#e5e5e0] rounded-lg px-3 py-2 text-sm text-black focus:border-[#f97316] focus:ring-1 focus:ring-[#c9a84c] outline-none";
+const labelCls = "block text-xs uppercase tracking-wider text-[#6b7280] mb-1.5";
 
 function FormField({
   name,

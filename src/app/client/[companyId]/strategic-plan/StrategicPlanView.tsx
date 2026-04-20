@@ -39,8 +39,8 @@ export default function StrategicPlanView({ companyId, plan, hasDiagnostic }: Pr
 
   if (!hasDiagnostic) {
     return (
-      <div className="bg-[#1a1a35] border border-[#2a2a4d] rounded-xl p-12 text-center">
-        <p className="text-[#8b8ba7] mb-4">
+      <div className="bg-white border border-[#e5e5e0] rounded-xl p-12 text-center">
+        <p className="text-[#6b7280] mb-4">
           Necesitas completar el diagnostico antes de generar el plan estrategico.
         </p>
       </div>
@@ -49,20 +49,20 @@ export default function StrategicPlanView({ companyId, plan, hasDiagnostic }: Pr
 
   if (!plan) {
     return (
-      <div className="bg-[#1a1a35] border border-[#2a2a4d] rounded-xl p-12 text-center">
+      <div className="bg-white border border-[#e5e5e0] rounded-xl p-12 text-center">
         {error && (
           <div className="bg-red-500/10 border border-red-500/30 text-red-400 px-4 py-3 rounded-lg text-sm mb-4">
             {error}
           </div>
         )}
         <div className="mb-6">
-          <div className="inline-flex bg-gradient-to-br from-[#c9a84c] to-[#9e8139] rounded-2xl p-4 mb-4">
+          <div className="inline-flex bg-[#f97316] rounded-2xl p-4 mb-4">
             <Target size={32} className="text-[#0a0a18]" />
           </div>
-          <h3 className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-[#f1f1f5] mb-2">
+          <h3 className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-black mb-2">
             Generar Plan Estrategico
           </h3>
-          <p className="text-[#8b8ba7] max-w-md mx-auto">
+          <p className="text-[#6b7280] max-w-md mx-auto">
             APEX va a analizar el diagnostico y generar un plan estrategico completo con
             posicionamiento, estrategias por area, analisis competitivo, roadmap y KPIs.
           </p>
@@ -70,7 +70,7 @@ export default function StrategicPlanView({ companyId, plan, hasDiagnostic }: Pr
         <button
           onClick={generatePlan}
           disabled={generating}
-          className="inline-flex items-center gap-2 bg-gradient-to-r from-[#c9a84c] to-[#9e8139] text-[#0a0a18] font-semibold px-6 py-3 rounded-lg hover:from-[#e3c670] hover:to-[#c9a84c] transition disabled:opacity-50"
+          className="inline-flex items-center gap-2 bg-[#f97316] text-[#0a0a18] font-semibold px-6 py-3 rounded-lg hover:bg-[#ea580c] transition disabled:opacity-50"
         >
           {generating ? (
             <>
@@ -103,7 +103,7 @@ export default function StrategicPlanView({ companyId, plan, hasDiagnostic }: Pr
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
       {/* Sidebar navigation */}
       <aside className="lg:col-span-1">
-        <div className="bg-[#1a1a35] border border-[#2a2a4d] rounded-xl p-3 sticky top-6">
+        <div className="bg-white border border-[#e5e5e0] rounded-xl p-3 sticky top-6">
           {sections.map((s) => {
             const Icon = s.icon;
             return (
@@ -112,8 +112,8 @@ export default function StrategicPlanView({ companyId, plan, hasDiagnostic }: Pr
                 onClick={() => setActiveSection(s.id)}
                 className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-left transition ${
                   activeSection === s.id
-                    ? "bg-[#c9a84c]/10 text-[#c9a84c]"
-                    : "text-[#8b8ba7] hover:bg-[#14142b]"
+                    ? "bg-[#f97316]/10 text-[#f97316]"
+                    : "text-[#6b7280] hover:bg-white"
                 }`}
               >
                 <Icon size={14} />
@@ -155,18 +155,18 @@ export default function StrategicPlanView({ companyId, plan, hasDiagnostic }: Pr
           </div>
         )}
         {activeSection === "kpis" && (
-          <div className="bg-[#1a1a35] border border-[#2a2a4d] rounded-xl p-6">
-            <h2 className="font-[family-name:var(--font-playfair)] text-xl font-bold text-[#c9a84c] mb-4">
+          <div className="bg-white border border-[#e5e5e0] rounded-xl p-6">
+            <h2 className="font-[family-name:var(--font-playfair)] text-xl font-bold text-[#f97316] mb-4">
               KPIs Estrategicos
             </h2>
             <div className="space-y-3">
               {c.kpis.map((kpi, i) => (
-                <div key={i} className="p-4 bg-[#0a0a18] rounded-lg border-l-2 border-[#c9a84c]">
+                <div key={i} className="p-4 bg-[#fafaf7] rounded-lg border-l-2 border-[#f97316]">
                   <div className="flex items-center justify-between mb-2">
-                    <p className="font-medium text-[#f1f1f5]">{kpi.name}</p>
-                    <span className="text-sm text-[#c9a84c]">Target: {kpi.target}</span>
+                    <p className="font-medium text-black">{kpi.name}</p>
+                    <span className="text-sm text-[#f97316]">Target: {kpi.target}</span>
                   </div>
-                  <p className="text-sm text-[#8b8ba7]">{kpi.rationale}</p>
+                  <p className="text-sm text-[#6b7280]">{kpi.rationale}</p>
                 </div>
               ))}
             </div>
@@ -179,29 +179,29 @@ export default function StrategicPlanView({ companyId, plan, hasDiagnostic }: Pr
 
 function Section({ title, content }: { title: string; content: string }) {
   return (
-    <div className="bg-[#1a1a35] border border-[#2a2a4d] rounded-xl p-6">
-      <h2 className="font-[family-name:var(--font-playfair)] text-xl font-bold text-[#c9a84c] mb-3">
+    <div className="bg-white border border-[#e5e5e0] rounded-xl p-6">
+      <h2 className="font-[family-name:var(--font-playfair)] text-xl font-bold text-[#f97316] mb-3">
         {title}
       </h2>
-      <p className="text-[#f1f1f5] leading-relaxed whitespace-pre-wrap">{content}</p>
+      <p className="text-black leading-relaxed whitespace-pre-wrap">{content}</p>
     </div>
   );
 }
 
 function PhaseCard({ phase, data }: { phase: string; data: { period: string; focus: string; actions: string[] } }) {
   return (
-    <div className="bg-[#1a1a35] border border-[#2a2a4d] rounded-xl p-6">
+    <div className="bg-white border border-[#e5e5e0] rounded-xl p-6">
       <div className="flex items-center gap-3 mb-3">
-        <span className="bg-[#c9a84c] text-[#0a0a18] text-xs font-bold px-2 py-1 rounded">
+        <span className="bg-[#f97316] text-[#0a0a18] text-xs font-bold px-2 py-1 rounded">
           {phase}
         </span>
-        <p className="text-sm text-[#8b8ba7]">{data.period}</p>
+        <p className="text-sm text-[#6b7280]">{data.period}</p>
       </div>
-      <p className="font-medium text-[#f1f1f5] mb-3">{data.focus}</p>
+      <p className="font-medium text-black mb-3">{data.focus}</p>
       <ul className="space-y-2">
         {data.actions.map((a, i) => (
-          <li key={i} className="text-sm text-[#8b8ba7] flex gap-2">
-            <span className="text-[#c9a84c]">→</span>
+          <li key={i} className="text-sm text-[#6b7280] flex gap-2">
+            <span className="text-[#f97316]">→</span>
             {a}
           </li>
         ))}

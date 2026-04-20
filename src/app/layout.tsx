@@ -13,7 +13,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "APEX Strategic Platform",
+  title: "Calderoli & Co - Strategic Platform",
   description: "Plataforma de consultoria estrategica impulsada por IA",
 };
 
@@ -27,7 +27,7 @@ export default function RootLayout({
       lang="es"
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-[#0a0a18] text-[#f1f1f5]">{children}</body>
+      <body className="min-h-full bg-[#fafaf7] text-[#0a0a0a]">{children}</body>
     </html>
   );
 }

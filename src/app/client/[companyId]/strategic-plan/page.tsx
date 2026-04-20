@@ -27,10 +27,10 @@ export default async function StrategicPlanPage({
 
   return (
     <div className="p-8">
-      <h1 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-[#f1f1f5] mb-2">
+      <h1 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-black mb-2">
         Plan Estrategico
       </h1>
-      <p className="text-[#8b8ba7] mb-8">
+      <p className="text-[#6b7280] mb-8">
         Estrategia integral generada por APEX a partir del diagnostico
       </p>
 
