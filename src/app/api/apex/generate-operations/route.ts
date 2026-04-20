@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { getAnthropicClient, buildSystemPrompt, MODEL } from "@/lib/apex";
 
+export const maxDuration = 300;
+export const dynamic = "force-dynamic";
+
 export async function POST(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -28,53 +31,53 @@ export async function POST(request: Request) {
 
   const anthropic = getAnthropicClient();
 
-  const userMessage = `Basandote en el plan estrategico de "${company.name}", genera:
-1. Plan operativo para el EQUIPO CONSULTOR (internal): acciones concretas con owner, fecha y prioridad
-2. Plan operativo para el EQUIPO DEL CLIENTE (client): acciones claras, sin jerga
-3. Objetivos SMART (uno por area estrategica: comercial, marketing, contenido, marca, operaciones)
-4. Acciones concretas vinculadas a cada objetivo
+  const userMessage = `Basandote en el plan estrategico de "${company.name}", genera un plan operativo COMPACTO.
 
-RESPONDE SOLO JSON:
+IMPORTANTE: Se breve. Maximo:
+- 5 acciones internas (para el equipo consultor)
+- 5 acciones cliente
+- 5 objetivos SMART (uno por area)
+- 10 acciones vinculadas a objetivos
+
+RESPONDE SOLO JSON VALIDO (sin markdown, sin texto extra):
 {
   "internal_plan": {
-    "overview": "resumen del plan interno",
+    "overview": "2-3 lineas resumen plan interno",
     "actions": [
-      {"title": "titulo", "description": "desc", "owner": "rol del equipo", "priority": "high", "sequence": 1}
+      {"title": "titulo corto", "description": "1 linea", "owner": "rol", "priority": "high", "sequence": 1}
     ]
   },
   "client_plan": {
-    "overview": "resumen del plan cliente",
+    "overview": "2-3 lineas resumen plan cliente",
     "actions": [
-      {"title": "titulo", "description": "desc sin jerga", "owner": "quien", "priority": "high"}
+      {"title": "titulo corto", "description": "1 linea sin jerga", "owner": "quien", "priority": "high"}
     ]
   },
   "objectives": [
     {
-      "title": "objetivo",
-      "specific": "especifico",
-      "measurable": "medible",
-      "achievable": "alcanzable",
-      "relevant": "relevante",
+      "title": "objetivo corto",
+      "specific": "1 linea",
+      "measurable": "1 linea",
+      "achievable": "1 linea",
+      "relevant": "1 linea",
       "time_bound": "YYYY-MM-DD",
-      "kpi": "kpi",
-      "target_value": "valor target",
-      "owner": "responsable"
+      "kpi": "nombre kpi",
+      "target_value": "valor",
+      "owner": "rol"
     }
   ],
   "actions": [
     {
       "title": "accion concreta",
-      "description": "descripcion",
-      "owner": "responsable",
+      "description": "1 linea",
+      "owner": "rol",
       "due_date": "YYYY-MM-DD",
-      "priority": "low|medium|high|critical",
-      "category": "marketing|comercial|operaciones|marca|contenido",
+      "priority": "medium",
+      "category": "marketing",
       "objective_index": 0
     }
   ]
-}
-
-SOLO JSON.`;
+}`;
 
   try {
     const response = await anthropic.messages.create({
