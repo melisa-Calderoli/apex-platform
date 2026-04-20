@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme {
+  --color-apex-bg: #0a0a18;
+  --color-apex-bg-elevated: #14142b;
+  --color-apex-bg-card: #1a1a35;
+  --color-apex-border: #2a2a4d;
+  --color-apex-gold: #c9a84c;
+  --color-apex-gold-light: #e3c670;
+  --color-apex-gold-dark: #9e8139;
+  --color-apex-text: #f1f1f5;
+  --color-apex-text-muted: #8b8ba7;
+  --color-apex-success: #4ade80;
+  --color-apex-warning: #fbbf24;
+  --color-apex-danger: #f87171;
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --background: #0a0a18;
+  --foreground: #f1f1f5;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #14142b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a4d;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a6d;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #1a1a35 0%, #2a2a4d 50%, #1a1a35 100%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.toast-enter {
+  animation: slideIn 0.3s ease-out;
+}

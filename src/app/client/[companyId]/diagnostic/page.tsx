@@ -1,0 +1,39 @@
+import { createClient } from "@/lib/supabase/server";
+import DiagnosticForm from "./DiagnosticForm";
+import DiagnosticResults from "./DiagnosticResults";
+
+export default async function DiagnosticPage({
+  params,
+}: {
+  params: Promise<{ companyId: string }>;
+}) {
+  const { companyId } = await params;
+  const supabase = await createClient();
+
+  const { data: diagnostic } = await supabase
+    .from("diagnostics")
+    .select("*")
+    .eq("company_id", companyId)
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  return (
+    <div className="p-8">
+      <div className="mb-8">
+        <h1 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-[#f1f1f5]">
+          Diagnostico
+        </h1>
+        <p className="text-[#8b8ba7] mt-1">
+          Completa el diagnostico para que APEX genere el analisis estrategico
+        </p>
+      </div>
+
+      {diagnostic?.status === "completed" && diagnostic.ai_analysis ? (
+        <DiagnosticResults diagnostic={diagnostic} />
+      ) : (
+        <DiagnosticForm companyId={companyId} existing={diagnostic} />
+      )}
+    </div>
+  );
+}
