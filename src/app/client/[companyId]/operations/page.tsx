@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createClient, getUserProfile } from "@/lib/supabase/server";
 import OperationsView from "./OperationsView";
 import BackButton from "@/components/BackButton";
 
@@ -9,6 +9,8 @@ export default async function OperationsPage({
 }) {
   const { companyId } = await params;
   const supabase = await createClient();
+  const auth = await getUserProfile();
+  const isAdmin = auth?.profile.role === "admin";
 
   const [{ data: plan }, { data: objectives }, { data: operationPlans }, { data: actions }] = await Promise.all([
     supabase.from("strategic_plans").select("id").eq("company_id", companyId).maybeSingle(),
@@ -33,6 +35,7 @@ export default async function OperationsPage({
         objectives={objectives || []}
         operationPlans={operationPlans || []}
         actions={actions || []}
+        isAdmin={isAdmin}
       />
     </div>
   );
