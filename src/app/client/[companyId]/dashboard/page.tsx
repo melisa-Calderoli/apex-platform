@@ -113,7 +113,7 @@ export default async function ClientDashboardPage({
         />
         <QuickCard
           href={`/client/${companyId}/chat`}
-          label="Chat APEX"
+          label="Chat Melisa"
           icon={<MessageSquare size={20} />}
           description="Consultar"
         />

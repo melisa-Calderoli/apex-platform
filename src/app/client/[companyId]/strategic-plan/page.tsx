@@ -31,7 +31,7 @@ export default async function StrategicPlanPage({
         Plan Estrategico
       </h1>
       <p className="text-[#6b7280] mb-8">
-        Estrategia integral generada por APEX a partir del diagnostico
+        Estrategia integral generada por Melisa a partir del diagnostico
       </p>
 
       <StrategicPlanView

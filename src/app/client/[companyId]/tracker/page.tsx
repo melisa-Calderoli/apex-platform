@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import KanbanBoard from "./KanbanBoard";
+import BackButton from "@/components/BackButton";
 
 export default async function TrackerPage({
   params,
@@ -18,6 +19,7 @@ export default async function TrackerPage({
 
   return (
     <div className="p-8 h-screen flex flex-col">
+      <BackButton href={`/client/${companyId}/dashboard`} label="Volver al Dashboard" />
       <div className="mb-6">
         <h1 className="font-[family-name:var(--font-playfair)] text-3xl font-bold text-black">
           Tracker

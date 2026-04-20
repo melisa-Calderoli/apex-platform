@@ -67,7 +67,7 @@ export default function ChatInterface({ companyId }: { companyId: string }) {
               <Sparkles size={32} className="text-[#0a0a18]" />
             </div>
             <h3 className="font-[family-name:var(--font-playfair)] text-xl font-bold text-black mb-2">
-              Hola, soy APEX
+              Hola, soy Melisa
             </h3>
             <p className="text-[#6b7280] max-w-md">
               Puedo ayudarte con estrategia, analisis de mercado, diagnostico, ideas creativas y mucho mas.

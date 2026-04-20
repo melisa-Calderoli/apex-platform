@@ -239,12 +239,12 @@ export default function DiagnosticForm({ companyId, existing }: Props) {
               {generating ? (
                 <>
                   <Loader2 size={16} className="animate-spin" />
-                  APEX analizando...
+                  Melisa analizando...
                 </>
               ) : (
                 <>
                   <Sparkles size={16} />
-                  Generar Diagnostico con APEX
+                  Generar con Melisa
                 </>
               )}
             </button>
