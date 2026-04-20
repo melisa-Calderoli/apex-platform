@@ -10,9 +10,10 @@ interface Props {
   companyId: string;
   plan: StrategicPlan | null;
   hasDiagnostic: boolean;
+  isAdmin?: boolean;
 }
 
-export default function StrategicPlanView({ companyId, plan, hasDiagnostic }: Props) {
+export default function StrategicPlanView({ companyId, plan, hasDiagnostic, isAdmin = false }: Props) {
   const router = useRouter();
   const [generating, setGenerating] = useState(false);
   const [error, setError] = useState("");
@@ -81,30 +82,33 @@ export default function StrategicPlanView({ companyId, plan, hasDiagnostic }: Pr
               <Target size={32} className="text-black" />
             </div>
             <h3 className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-black mb-2">
-              Generar Plan Estrategico
+              {isAdmin ? "Generar Plan Estrategico" : "Plan Estrategico pendiente"}
             </h3>
             <p className="text-[#6b7280] max-w-md mx-auto">
-              Melisa va a analizar el diagnostico y generar un plan estrategico completo con
-              posicionamiento, estrategias por area, analisis competitivo, roadmap y KPIs.
+              {isAdmin
+                ? "Melisa va a analizar el diagnostico y generar un plan estrategico completo con posicionamiento, estrategias por area, analisis competitivo, roadmap y KPIs."
+                : "Tu consultora esta preparando el plan estrategico. Volve pronto para verlo."}
             </p>
           </div>
-          <button
-            onClick={generatePlan}
-            disabled={generating}
-            className="inline-flex items-center gap-2 bg-[#f97316] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#ea580c] transition disabled:opacity-50"
-          >
-            {generating ? (
-              <>
-                <Loader2 size={18} className="animate-spin" />
-                Melisa generando plan...
-              </>
-            ) : (
-              <>
-                <Sparkles size={18} />
-                Generar Plan con Melisa
-              </>
-            )}
-          </button>
+          {isAdmin && (
+            <button
+              onClick={generatePlan}
+              disabled={generating}
+              className="inline-flex items-center gap-2 bg-[#f97316] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#ea580c] transition disabled:opacity-50"
+            >
+              {generating ? (
+                <>
+                  <Loader2 size={18} className="animate-spin" />
+                  Melisa generando plan...
+                </>
+              ) : (
+                <>
+                  <Sparkles size={18} />
+                  Generar Plan con Melisa
+                </>
+              )}
+            </button>
+          )}
         </div>
       </>
     );
@@ -127,10 +131,12 @@ export default function StrategicPlanView({ companyId, plan, hasDiagnostic }: Pr
 
       <div className="flex justify-end gap-2 mb-4">
         {!editing ? (
-          <button onClick={() => setEditing(true)} className="flex items-center gap-2 text-sm text-[#f97316] hover:text-[#ea580c] bg-[#f97316]/10 px-4 py-2 rounded-lg">
-            <Edit2 size={14} />
-            Editar plan
-          </button>
+          isAdmin && (
+            <button onClick={() => setEditing(true)} className="flex items-center gap-2 text-sm text-[#f97316] hover:text-[#ea580c] bg-[#f97316]/10 px-4 py-2 rounded-lg">
+              <Edit2 size={14} />
+              Editar plan
+            </button>
+          )
         ) : (
           <>
             <button onClick={() => { setContent(plan.content as StrategicPlanContent); setEditing(false); }} className="flex items-center gap-2 text-sm text-[#6b7280] hover:text-black px-4 py-2 rounded-lg">

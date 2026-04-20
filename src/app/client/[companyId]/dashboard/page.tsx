@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createClient, getUserProfile } from "@/lib/supabase/server";
 import Link from "next/link";
 import { ClipboardCheck, Target, ListTodo, MessageSquare, ArrowRight, Calendar } from "lucide-react";
 
@@ -9,6 +9,8 @@ export default async function ClientDashboardPage({
 }) {
   const { companyId } = await params;
   const supabase = await createClient();
+  const auth = await getUserProfile();
+  const isAdmin = auth?.profile.role === "admin";
 
   const [diagnosticRes, planRes, objectivesRes, actionsRes] = await Promise.all([
     supabase.from("diagnostics").select("*").eq("company_id", companyId).eq("status", "completed").maybeSingle(),
@@ -118,12 +120,14 @@ export default async function ClientDashboardPage({
           icon={<ListTodo size={20} />}
           description="Seguimiento"
         />
-        <QuickCard
-          href={`/client/${companyId}/chat`}
-          label="Chat Melisa"
-          icon={<MessageSquare size={20} />}
-          description="Consultar"
-        />
+        {isAdmin && (
+          <QuickCard
+            href={`/client/${companyId}/chat`}
+            label="Chat Melisa"
+            icon={<MessageSquare size={20} />}
+            description="Consultar"
+          />
+        )}
       </div>
 
       {/* Critical actions */}

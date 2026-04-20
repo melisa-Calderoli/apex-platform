@@ -7,6 +7,9 @@ export async function POST(request: Request) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: "No autenticado" }, { status: 401 });
 
+  const { data: profile } = await supabase.from("profiles").select("role").eq("id", user.id).single();
+  if (profile?.role !== "admin") return NextResponse.json({ error: "Solo admin puede generar" }, { status: 403 });
+
   if (!process.env.ANTHROPIC_API_KEY) {
     return NextResponse.json({ error: "ANTHROPIC_API_KEY no configurada" }, { status: 500 });
   }
@@ -76,7 +79,7 @@ SOLO JSON.`;
   try {
     const response = await anthropic.messages.create({
       model: MODEL,
-      max_tokens: 8000,
+      max_tokens: 16000,
       system: buildSystemPrompt({ company, ...(diagnostic && { diagnostic }), strategicPlan }),
       messages: [{ role: "user", content: userMessage }],
     });

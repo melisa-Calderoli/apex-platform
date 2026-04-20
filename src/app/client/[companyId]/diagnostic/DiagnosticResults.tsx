@@ -6,7 +6,7 @@ import type { Diagnostic, DiagnosticAnalysis } from "@/lib/types";
 import { AlertCircle, CheckCircle, TrendingUp, Target, Edit2, Save, X } from "lucide-react";
 import BackButton from "@/components/BackButton";
 
-export default function DiagnosticResults({ diagnostic }: { diagnostic: Diagnostic }) {
+export default function DiagnosticResults({ diagnostic, isAdmin = false }: { diagnostic: Diagnostic; isAdmin?: boolean }) {
   const router = useRouter();
   const [editing, setEditing] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -44,13 +44,15 @@ export default function DiagnosticResults({ diagnostic }: { diagnostic: Diagnost
 
       <div className="flex justify-end gap-2">
         {!editing ? (
-          <button
-            onClick={() => setEditing(true)}
-            className="flex items-center gap-2 text-sm text-[#f97316] hover:text-[#ea580c] bg-[#f97316]/10 px-4 py-2 rounded-lg"
-          >
-            <Edit2 size={14} />
-            Editar diagnostico
-          </button>
+          isAdmin && (
+            <button
+              onClick={() => setEditing(true)}
+              className="flex items-center gap-2 text-sm text-[#f97316] hover:text-[#ea580c] bg-[#f97316]/10 px-4 py-2 rounded-lg"
+            >
+              <Edit2 size={14} />
+              Editar diagnostico
+            </button>
+          )
         ) : (
           <>
             <button

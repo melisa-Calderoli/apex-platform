@@ -40,7 +40,7 @@ export default function TopNav({
     { label: "Plan", href: `${baseUrl}/strategic-plan`, icon: Target },
     { label: "Operaciones", href: `${baseUrl}/operations`, icon: Calendar },
     { label: "Tracker", href: `${baseUrl}/tracker`, icon: Kanban },
-    { label: "Chat", href: `${baseUrl}/chat`, icon: MessageSquare },
+    ...(isAdminViewing ? [{ label: "Chat", href: `${baseUrl}/chat`, icon: MessageSquare }] : []),
   ];
 
   async function handleLogout() {

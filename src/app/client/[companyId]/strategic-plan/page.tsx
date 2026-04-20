@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createClient, getUserProfile } from "@/lib/supabase/server";
 import StrategicPlanView from "./StrategicPlanView";
 
 export default async function StrategicPlanPage({
@@ -8,6 +8,8 @@ export default async function StrategicPlanPage({
 }) {
   const { companyId } = await params;
   const supabase = await createClient();
+  const auth = await getUserProfile();
+  const isAdmin = auth?.profile.role === "admin";
 
   const [{ data: diagnostic }, { data: plan }] = await Promise.all([
     supabase
@@ -38,6 +40,7 @@ export default async function StrategicPlanPage({
         companyId={companyId}
         plan={plan}
         hasDiagnostic={!!diagnostic}
+        isAdmin={isAdmin}
       />
     </div>
   );

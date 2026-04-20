@@ -7,6 +7,9 @@ export async function POST(request: Request) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: "No autenticado" }, { status: 401 });
 
+  const { data: profile } = await supabase.from("profiles").select("role").eq("id", user.id).single();
+  if (profile?.role !== "admin") return NextResponse.json({ error: "Solo admin puede generar" }, { status: 403 });
+
   const { companyId } = await request.json();
 
   // Get company + last diagnostic
@@ -71,7 +74,7 @@ RESPONDE SOLO CON EL JSON, SIN TEXTO ADICIONAL.`;
   try {
     const response = await anthropic.messages.create({
       model: MODEL,
-      max_tokens: 8000,
+      max_tokens: 16000,
       system: buildSystemPrompt({ company, diagnostic }),
       messages: [{ role: "user", content: userMessage }],
     });

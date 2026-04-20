@@ -62,23 +62,29 @@ export default function OperationsView({
             {error}
           </div>
         )}
-        <button
-          onClick={generateOperations}
-          disabled={generating}
-          className="inline-flex items-center gap-2 bg-[#f97316] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#ea580c] transition disabled:opacity-50"
-        >
-          {generating ? (
-            <>
-              <Loader2 size={18} className="animate-spin" />
-              Melisa generando operaciones...
-            </>
-          ) : (
-            <>
-              <Sparkles size={18} />
-              Generar Plan Operativo con Melisa
-            </>
-          )}
-        </button>
+        {isAdmin ? (
+          <button
+            onClick={generateOperations}
+            disabled={generating}
+            className="inline-flex items-center gap-2 bg-[#f97316] text-white font-semibold px-6 py-3 rounded-lg hover:bg-[#ea580c] transition disabled:opacity-50"
+          >
+            {generating ? (
+              <>
+                <Loader2 size={18} className="animate-spin" />
+                Melisa generando operaciones...
+              </>
+            ) : (
+              <>
+                <Sparkles size={18} />
+                Generar Plan Operativo con Melisa
+              </>
+            )}
+          </button>
+        ) : (
+          <p className="text-[#6b7280]">
+            Tu consultora esta preparando el plan operativo. Volve pronto.
+          </p>
+        )}
       </div>
     );
   }

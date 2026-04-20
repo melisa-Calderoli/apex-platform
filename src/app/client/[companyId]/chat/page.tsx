@@ -1,5 +1,7 @@
 import ChatInterface from "@/components/ChatInterface";
 import BackButton from "@/components/BackButton";
+import { getUserProfile } from "@/lib/supabase/server";
+import { redirect } from "next/navigation";
 
 export default async function ChatPage({
   params,
@@ -7,6 +9,11 @@ export default async function ChatPage({
   params: Promise<{ companyId: string }>;
 }) {
   const { companyId } = await params;
+  const auth = await getUserProfile();
+
+  if (auth?.profile.role !== "admin") {
+    redirect(`/client/${companyId}/dashboard`);
+  }
 
   return (
     <div className="h-screen flex flex-col">
